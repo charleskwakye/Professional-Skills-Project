@@ -1,0 +1,90 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+div ul li {
+    list-style: none;
+    margin: 0;
+
+    padding: 0;
+}
+
+div ul li a{
+    text-decoration: none;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding:5px;
+}
+.sale {
+    text-decoration: underline;
+    text-underline-offset: -.4em;
+    text-decoration-skip-ink: none;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+    color: gray;
+}
+
+.card:hover{
+
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    transform: scale(1.02);
+}
+
+li a {
+    color: grey;
+    border: 1px solid transparent;
+}
+li a:hover{
+    border: 1px solid grey;
+    color: black;
+    background-color: #e0e0e0;
+}
+
+#shoe_nav{
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: solid 1px;
+}
+
+#nike_logo{
+    height: 30px;
+
+}
+
+footer{
+    border-top: 2px solid black;
+}
+
+div h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: auto;
+}
+
+button.btn.button-remove{
+    margin: 0;
+    padding: 0;
+}
+
+.fa-trash-can{
+    padding: 16px 12px;
+}
+
+@media (max-width: 575.98px) {  }
+
+@media (max-width: 767.98px) {  }
+
+@media (max-width: 991.98px) {  }
+
+@media (max-width: 1199.98px) {  }
+
+@media (max-width: 1399.98px) {  }
