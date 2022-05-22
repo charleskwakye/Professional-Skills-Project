@@ -5,41 +5,80 @@ if (document.readyState === 'loading') {
 }
 
 function ready() {
-    var removeItemButton = document.querySelectorAll('.fa-trash-can')
+    let removeItemButton = document.querySelectorAll('.fa-trash-can')
     console.log(removeItemButton)
-    for (var i = 0; i < removeItemButton.length; i++) {
-        var button = removeItemButton[i]
+    for (let i = 0; i < removeItemButton.length; i++) {
+        let button = removeItemButton[i]
         button.addEventListener('click', removeItemFromCart)
     }
-    var inputsForQuantity = document.getElementsByClassName('item-quantity')
-    for (var i = 0; i < inputsForQuantity.length; i++) {
-        var realInput = inputsForQuantity[i]
+    let inputsForQuantity = document.getElementsByClassName('item-quantity')
+    for (let i = 0; i < inputsForQuantity.length; i++) {
+        let realInput = inputsForQuantity[i]
         realInput.addEventListener('change', changeQuantity)
     }
-    var addToCartBtns = document.getElementsByClassName('add-button')
-    for (var i = 0; i < addToCartBtns.length; i++) {
-        var button = addToCartBtns[i]
+    let addToCartBtns = document.getElementsByClassName('add-button')
+    for (let i = 0; i < addToCartBtns.length; i++) {
+        let button = addToCartBtns[i]
         button.addEventListener('click', addWhenClicked)
     }
     document.getElementsByClassName('button-buy-now')[0].addEventListener('click', buyNowClicked)
 }
 
 function buyNowClicked() {
+    // let boughtShoeNames = []
+    // let boughtShoePrice = []
+    // let cartItemNames = wholeCart.getElementsByClassName('item-name')
+    // for (let i = 0; i < cartItemNames.length; i++) {
+    //     let nowName = cartItemNames[i].innerText
+    //     boughtShoeNames.push(nowName)
+    //
+    // }
+    //
+    // let cartItemPrices = wholeCart.getElementsByClassName('item-price')
+    // for (let i = 0; i < cartItemPrices.length; i++) {
+    //     let nowPrice = cartItemPrices[i].innerText
+    //     boughtShoePrice.push(nowPrice)
+    //
+    // }
 
-    alert('Thank you for your order')
-    var wholeCart = document.getElementsByClassName('items-cart')[0]
+
+    // const firstArray = ['New Balance', 'Adidas', 'Nike']
+    // const secondArray = ['120', '350', '900']
+    // let namesOfShoesInfo = firstArray.toString()
+    // let pricesOfShoesInfo = secondArray.toString()
+    //
+    // let shoeNameSent = boughtShoeNames.toString()
+    // let shoePriceSent = boughtShoePrice.toString()
+    // let shoeNamesInput = document.querySelector('#namesOfShoes')
+    // let shoesPriceInput = document.querySelector('#pricesOfShoes')
+    //
+    // shoeNamesInput.setAttribute("value", namesOfShoesInfo)
+    // shoesPriceInput.setAttribute("value", pricesOfShoesInfo)
+
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Thanks for your order!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+
+    let wholeCart = document.getElementsByClassName('items-cart')[0]
     while (wholeCart.hasChildNodes()){
         wholeCart.removeChild(wholeCart.firstChild)
     }
     updateTotalCart()
+    return true; // change back to allow form to submit
 }
 
+
+
 function addWhenClicked(event) {
-    var button = event.target
-    var storeItem = button.parentElement.parentElement
-    var title = storeItem.getElementsByClassName('item-name')[0].innerText
-    var price = storeItem.getElementsByClassName('item-price')[0].innerText
-    var imageSource = storeItem.getElementsByClassName('item-price')[0].parentElement.parentElement.previousElementSibling.src
+    let button = event.target
+    let storeItem = button.parentElement.parentElement
+    let title = storeItem.getElementsByClassName('item-name')[0].innerText
+    let price = storeItem.getElementsByClassName('item-price')[0].innerText
+    let imageSource = storeItem.getElementsByClassName('item-price')[0].parentElement.parentElement.previousElementSibling.src
 
     console.log(title, price, imageSource)
     addItemClickedItemToCart(title, price, imageSource)
@@ -47,17 +86,17 @@ function addWhenClicked(event) {
 }
 
 function addItemClickedItemToCart(title, price, imageSource) {
-    var cartRow = document.createElement('div')
+    let cartRow = document.createElement('div')
     cartRow.classList.add('row')
-    var wholeCart = document.getElementsByClassName('items-cart')[0]
-    var cartItemNames = wholeCart.getElementsByClassName('item-name')
-    for (var i = 0; i < cartItemNames.length; i++) {
+    let wholeCart = document.getElementsByClassName('items-cart')[0]
+    let cartItemNames = wholeCart.getElementsByClassName('item-name')
+    for (let i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText === title){
-            alert('This item has already been added to your cart')
+            swal.fire('This item has already been added to your cart')
             return
         }
     }
-    var contentsOfCartRow = `
+    let contentsOfCartRow = `
         <div class="col-4 d-flex justify-content-center align-items-center"><img src="${imageSource}" alt="item" width="150" height="150"><span class="item-name">${title}</span></div>
             <div class="col-4 d-flex justify-content-center align-items-center"><span class="item-price">${price}</span></div>
             <div class="col-4 d-flex justify-content-center align-items-center"><input class="item-quantity" type="number" value="1">
@@ -70,7 +109,7 @@ function addItemClickedItemToCart(title, price, imageSource) {
 }
 
 function changeQuantity(event) {
-    var input = event.target
+    let input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
@@ -78,22 +117,22 @@ function changeQuantity(event) {
 }
 
 function removeItemFromCart(event) {
-    var clickedButton = event.target
+    let clickedButton = event.target
     clickedButton.parentElement.parentElement.parentElement.remove()
     updateTotalCart()
 }
 
 
 function updateTotalCart() {
-    var containerOfCartItems = document.getElementsByClassName('items-cart')[0]
-    var rowsInCart = containerOfCartItems.getElementsByClassName('row')
-    var total = 0
-    for (var i = 0; i < rowsInCart.length; i++) {
-        var cartRow = rowsInCart[i]
-        var priceElement = cartRow.getElementsByClassName('item-price')[0]
-        var quantityElement = cartRow.getElementsByClassName('item-quantity')[0]
-        var realPrice = parseFloat(priceElement.innerText.replace('€', ''))
-        var realQuantity = quantityElement.value
+    let containerOfCartItems = document.getElementsByClassName('items-cart')[0]
+    let rowsInCart = containerOfCartItems.getElementsByClassName('row')
+    let total = 0
+    for (let i = 0; i < rowsInCart.length; i++) {
+        let cartRow = rowsInCart[i]
+        let priceElement = cartRow.getElementsByClassName('item-price')[0]
+        let quantityElement = cartRow.getElementsByClassName('item-quantity')[0]
+        let realPrice = parseFloat(priceElement.innerText.replace('€', ''))
+        let realQuantity = quantityElement.value
         total = total + (realPrice * realQuantity)
         console.log(realPrice)
     }

@@ -7,6 +7,14 @@
     font-family: 'Lato', sans-serif;
 }
 
+.fa-bag-shopping {
+    color: black;
+}
+
+.fa-bag-shopping:hover{
+    color: dimgrey;
+}
+
 div ul li {
     list-style: none;
     margin: 0;
@@ -27,6 +35,8 @@ div ul li a{
     text-decoration-color: red;
     text-decoration-thickness: 2px;
     color: gray;
+    font-size: 17px;
+    margin-top: 4px;
 }
 
 .card:hover{
@@ -78,6 +88,21 @@ button.btn.button-remove{
 .fa-trash-can{
     padding: 16px 12px;
 }
+
+input{
+    margin: 9px;
+    padding: 9px;
+}
+label{
+    margin: 9px;
+    padding: 9px;
+}
+
+input:last-child{
+    display: block;
+
+}
+
 
 @media (max-width: 575.98px) {  }
 
